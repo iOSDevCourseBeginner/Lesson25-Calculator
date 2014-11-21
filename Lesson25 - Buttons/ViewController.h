@@ -12,17 +12,17 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *screen;
 
-- (IBAction)number0:(id)sender;
-- (IBAction)number1:(id)sender;
-- (IBAction)number2:(id)sender;
-- (IBAction)number3:(id)sender;
-- (IBAction)number4:(id)sender;
-- (IBAction)number5:(id)sender;
-- (IBAction)number6:(id)sender;
-- (IBAction)number7:(id)sender;
-- (IBAction)number8:(id)sender;
-- (IBAction)number9:(id)sender;
-- (IBAction)buttonClear:(id)sender;
+- (IBAction)number0Button:(id)sender;
+- (IBAction)number1Button:(id)sender;
+- (IBAction)number2Button:(id)sender;
+- (IBAction)number3Button:(id)sender;
+- (IBAction)number4Button:(id)sender;
+- (IBAction)number5Button:(id)sender;
+- (IBAction)number6Button:(id)sender;
+- (IBAction)number7Button:(id)sender;
+- (IBAction)number8Button:(id)sender;
+- (IBAction)number9Button:(id)sender;
+- (IBAction)clearButton:(id)sender;
 
 @end
 
