@@ -9,9 +9,7 @@
 #import "ViewController.h"
 
 @interface ViewController ()
-
-@property (assign, nonatomic) NSInteger numberInMemory;
-
+@property (strong, nonatomic) NSMutableString* cellString;
 @end
 
 @implementation ViewController
@@ -19,92 +17,90 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-
-
-
-
-#pragma mark - Initialization
-    
-    self.numberInMemory = 0;
+    self.cellString = [[NSMutableString alloc] init];
     
 }
 
-
-
-
-
-#pragma mark - Calculation
-
-- (void) calculationMethod:(NSInteger) number {
-
-    NSInteger summa = number + self.numberInMemory;
-    self.screen.text = [NSString stringWithFormat:@"%d", summa];
-    self.numberInMemory = summa;
+- (void) calcScreen {
+    
+    screenString = [NSString stringWithFormat:@"%g", x];
+    self.screen.text = screenString;
+    [self.cellString appendFormat:@"%g",x];
+    self.smallHistoryScreen.text = self.cellString;
+    
     
 }
-
-
 
 
 
 #pragma mark - IBActions
 
-- (IBAction)number0Button:(id)sender {
-    
-    [self calculationMethod:0];
-}
-
-- (IBAction)number1Button:(id)sender {
-    
-    [self calculationMethod:1];
-}
-
-- (IBAction)number2Button:(id)sender {
-    
-    [self calculationMethod:2];
-}
-
-- (IBAction)number3Button:(id)sender {
-    
-    [self calculationMethod:3];
-}
-
-- (IBAction)number4Button:(id)sender {
-    
-    [self calculationMethod:4];
-}
-
-- (IBAction)number5Button:(id)sender {
-    
-    [self calculationMethod:5];
-}
-
-- (IBAction)number6Button:(id)sender {
-    
-    [self calculationMethod:6];
-}
-
-- (IBAction)number7Button:(id)sender {
-    
-    [self calculationMethod:7];
-}
-
-- (IBAction)number8Button:(id)sender {
-    
-    [self calculationMethod:8];
-}
-
-- (IBAction)number9Button:(id)sender {
-
-    [self calculationMethod:9];
-}
-
 - (IBAction)clearButton:(id)sender {
-
-    self.screen.text = [NSString stringWithFormat:@"0"];
-    self.numberInMemory = 0;
+    
+    x = 0;
+    y = 0;
+    self.cellString = nil;
+    enterFlag = NO;
+    yFlag = NO;
+    [self calcScreen];
+    
 }
 
+
+
+- (IBAction)numberButtons:(id)sender {
+    
+    if (enterFlag) {
+        y = x;
+        x = 0;
+        enterFlag = NO;
+    }
+    
+    x = (10.0f * x) + [sender tag];
+    
+    [self calcScreen];
+    
+}
+
+- (IBAction)inverseButton:(id)sender {
+    
+    x = -1 * x;
+    
+    [self calcScreen];
+}
+
+- (IBAction)calculationButtons:(id)sender {
+    
+    if (yFlag) {
+        
+        if (enterFlag == 0) {
+            
+            if (calculation == 11) {
+                x = y + x;
+            }
+            
+            if (calculation == 12) {
+                x = y - x;
+            }
+            
+            if (calculation == 13) {
+                x = y * x;
+            }
+            
+            if (calculation == 14) {
+                x = y / x;
+            }
+        }
+    }
+    
+    calculation = [sender tag];
+    y = x;
+    enterFlag = YES;
+    yFlag = YES;
+   
+    
+    [self calcScreen];
+}
 
 
 - (void)didReceiveMemoryWarning {

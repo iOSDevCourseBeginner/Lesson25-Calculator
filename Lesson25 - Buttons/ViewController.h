@@ -7,22 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
-#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
-@interface ViewController : UIViewController
+
+@interface ViewController : UIViewController {
+    
+    double x, y, w;
+    NSInteger calculation;
+    NSString* screenString;
+    NSMutableString* screenHistoryString;
+    BOOL enterFlag, yFlag;
+    
+    
+
+}
 
 @property (weak, nonatomic) IBOutlet UILabel *screen;
+@property (weak, nonatomic) IBOutlet UILabel *smallHistoryScreen;
 
-- (IBAction)number0Button:(id)sender;
-- (IBAction)number1Button:(id)sender;
-- (IBAction)number2Button:(id)sender;
-- (IBAction)number3Button:(id)sender;
-- (IBAction)number4Button:(id)sender;
-- (IBAction)number5Button:(id)sender;
-- (IBAction)number6Button:(id)sender;
-- (IBAction)number7Button:(id)sender;
-- (IBAction)number8Button:(id)sender;
-- (IBAction)number9Button:(id)sender;
+
 - (IBAction)clearButton:(id)sender;
+- (IBAction)numberButtons:(id)sender;
+- (IBAction)inverseButton:(id)sender;
+- (IBAction)calculationButtons:(id)sender;
+
+
 
 @end
 
